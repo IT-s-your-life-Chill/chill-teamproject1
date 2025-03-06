@@ -1,0 +1,226 @@
+* {
+  box-sizing: border-box;
+  font-family: '42dot Sans', sans-serif;
+}
+
+body {
+  background-color: #030303;
+  color: #ffffff;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.music-app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.music-header-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.profile-image-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-text-container {
+  flex-grow: 1;
+}
+
+.profile-name-container {
+  font-size: 14px;
+  font-weight: 400;
+  color: #aaaaaa;
+  margin-bottom: 4px;
+}
+
+.title-container {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.music-list-container {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  grid-auto-flow: column;
+  grid-auto-columns: 150px;
+  gap: 16px;
+  padding-bottom: 32px;
+  overflow-x: auto;
+}
+
+/* 개별 음악 아이템 */
+.music-list-container .music-item-container {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.2s;
+}
+
+/* .music-list-container .music-item-container:hover {
+  transform: translateY(-8px);
+} */
+
+.music-controls {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  transition: opacity 0.3s;
+}
+
+.music-checkbox {
+  display: none;
+}
+
+.music-item {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.music-img-container {
+  width: 100%;
+  position: relative;
+  padding-top: 100%; /* 1:1 비율 유지 */
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.music-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: white;
+  font-size: 30px;
+}
+
+.music-info-container {
+  padding: 0 4px;
+}
+
+.music-img-container:hover .play-button {
+  opacity: 1;
+}
+
+/* 체크박스가 체크되었을 때 스타일 변경 */
+.music-checkbox:checked + .music-item .play-button::after {
+  content: '❚❚';
+}
+
+.music-checkbox:not(:checked) + .music-item .play-button::after {
+  content: '▶';
+}
+
+.music-img {
+  transition: filter 0.3s ease;
+}
+
+.music-checkbox:checked + .music-item .music-img {
+  filter: brightness(50%);
+}
+
+/* 체크박스가 체크되면 오디오 자동 재생 (작동하지 않을 수 있음) */
+.music-checkbox:checked + .music-item .music-controls {
+  opacity: 1;
+  visibility: visible;
+}
+
+.music-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-singer {
+  font-size: 14px;
+  color: #aaaaaa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 재생 아이콘 오버레이 (유튜브 뮤직 스타일)
+.music-img-container::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: white;
+  font-size: 50px;
+} */
+
+.music-img-container:hover::after {
+  opacity: 1;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .music-list-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .music-list-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
