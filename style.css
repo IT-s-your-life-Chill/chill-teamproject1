@@ -111,7 +111,7 @@ nav ul li a {
   position: sticky;
   top: var(--header-height);
   width: 250px;
-  background-color: #000000;
+  background-color: #030303;
   color: #b3b3b3;
   padding: 40px 20px;
   height: 100vh;
@@ -294,7 +294,7 @@ hr {
   object-fit: cover;
 }
 
-.play-button {
+.play-button-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -314,16 +314,16 @@ hr {
   padding: 0 4px;
 }
 
-.music-img-container:hover .play-button {
+.music-img-container:hover .play-button-icon {
   opacity: 1;
 }
 
 /* 체크박스가 체크되었을 때 스타일 변경 */
-.music-checkbox:checked + .music-item .play-button::after {
+.music-checkbox:checked + .music-item .play-button-icon::after {
   content: '❚❚';
 }
 
-.music-checkbox:not(:checked) + .music-item .play-button::after {
+.music-checkbox:not(:checked) + .music-item .play-button-icon::after {
   content: '▶';
 }
 
@@ -336,7 +336,7 @@ hr {
 }
 
 /* 체크박스가 체크되면 오디오 자동 재생 (작동하지 않을 수 있음) */
-.music-checkbox:checked + .music-item .music-controls {
+.music-checkbox:checked ~ .music-controls {
   opacity: 1;
   visibility: visible;
 }
@@ -476,7 +476,7 @@ footer {
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 10px;
-  background-color: #000;
+  background-color: #030303;
 }
 
 .embed-container {
